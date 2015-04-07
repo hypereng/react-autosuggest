@@ -289,6 +289,7 @@ class Autosuggest extends Component {
     return (
       <div id={'react-autosuggest-' + this.id}
            className="react-autosuggest__suggestions"
+           style={this.props.suggestionsContainerStyle}
            role="listbox">
         {content}
       </div>
@@ -300,10 +301,11 @@ class Autosuggest extends Component {
       this.getSuggestionId(this.state.focusedSectionIndex, this.state.focusedSuggestionIndex);
 
     return (
-      <div className="react-autosuggest">
+      <div className="react-autosuggest" style={this.props.containerStyle}>
         <input {...this.props.inputAttributes}
                type="text"
                value={this.state.value}
+               style={this.props.inputStyle}
                autoComplete="off"
                role="combobox"
                aria-autocomplete="list"
@@ -324,7 +326,12 @@ Autosuggest.propTypes = {
   inputAttributes: PropTypes.objectOf(PropTypes.string), // Attributes to pass to the input field (e.g. { id: 'my-input', className: 'sweet autosuggest' })
   onInputChange: PropTypes.func,                         // Function that will fire when value of input field changes
   suggestions: PropTypes.func.isRequired,                // Function to get the suggestions
-  suggestionRenderer: PropTypes.func                     // Function to render a single suggestion
+  suggestionRenderer: PropTypes.func,                    // Function to render a single suggestion,
+
+  containerStyle: React.PropTypes.object,
+  inputStyle: React.PropTypes.object,
+  suggestionsContainerStyle: React.PropTypes.object
+
 };
 
 Autosuggest.defaultProps = {

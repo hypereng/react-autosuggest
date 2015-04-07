@@ -338,6 +338,7 @@ var Autosuggest = (function (_Component) {
           "div",
           { id: "react-autosuggest-" + this.id,
             className: "react-autosuggest__suggestions",
+            style: this.props.suggestionsContainerStyle,
             role: "listbox" },
           content
         );
@@ -349,10 +350,11 @@ var Autosuggest = (function (_Component) {
 
         return React.createElement(
           "div",
-          { className: "react-autosuggest" },
+          { className: "react-autosuggest", style: this.props.containerStyle },
           React.createElement("input", _extends({}, this.props.inputAttributes, {
             type: "text",
             value: this.state.value,
+            style: this.props.inputStyle,
             autoComplete: "off",
             role: "combobox",
             "aria-autocomplete": "list",
@@ -376,7 +378,12 @@ Autosuggest.propTypes = {
   inputAttributes: PropTypes.objectOf(PropTypes.string), // Attributes to pass to the input field (e.g. { id: 'my-input', className: 'sweet autosuggest' })
   onInputChange: PropTypes.func, // Function that will fire when value of input field changes
   suggestions: PropTypes.func.isRequired, // Function to get the suggestions
-  suggestionRenderer: PropTypes.func // Function to render a single suggestion
+  suggestionRenderer: PropTypes.func, // Function to render a single suggestion,
+
+  containerStyle: React.PropTypes.object,
+  inputStyle: React.PropTypes.object,
+  suggestionsContainerStyle: React.PropTypes.object
+
 };
 
 Autosuggest.defaultProps = {
